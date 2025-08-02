@@ -1,0 +1,33 @@
+function sendHelpRequest() {
+    const message = document.getElementById('helpMessage').value;
+    const helpType = document.getElementById('helpType').value;
+    const autoResp = document.getElementById('autoResponse');
+
+    if (helpType.includes("Home")) {
+        // Handle home-related help
+        autoResp.innerHTML = "<b>Home Support:</b><br>Here are some resources for home-related issues.";
+    } else if (helpType.includes("Feel") || helpType.includes("Friend")) {
+        if (message.trim() === "" || !isNaN(message)) {
+            autoResp.innerHTML = "Invalid question, and it's rubbish.";
+            return;
+        }
+
+        const feelingsTips = [
+            "It's okay to feel overwhelmed sometimes.",
+            "Talking to someone you trust can really help.",
+            "Try to express your feelings through art or writing.",
+            "Remember, it's okay to ask for help when you need it."
+        ];
+        autoResp.innerHTML = `<b>Emotional Support:</b><br>${feelingsTips[Math.floor(Math.random() * feelingsTips.length)]}`;
+
+        const friendTips = [
+            "A good friend is someone who listens and supports you.",
+            "Try to spend quality time together to strengthen your bond.",
+            "If there's a conflict, talk it out calmly and respectfully.",
+            "Remember, it's important to respect each other's boundaries."
+        ];
+        autoResp.innerHTML += `<br><b>Friendship Guidance:</b><br>${friendTips[Math.floor(Math.random() * friendTips.length)]}`;
+    } else {
+        autoResp.innerHTML = "I'm not sure how to help with that.";
+    }
+}
